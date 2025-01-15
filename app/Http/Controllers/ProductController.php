@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $products = Product::with('category')->get();
         
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     public function show($id)
@@ -22,14 +22,14 @@ class ProductController extends Controller
             return response()->json(['message' => 'Product not found'], 404);
         }
         
-        return view('products.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     public function create()
     {
         $categories = Category::all();
 
-        return view('products.create', compact('categories'));
+        return view('admin.products.create', compact('categories'));
     }
 
     public function store(Request $request)
