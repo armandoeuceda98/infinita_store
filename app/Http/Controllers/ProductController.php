@@ -51,8 +51,8 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->price = $request->price;
             $product->stock = $request->stock;
-            // $product->discount_type = $request->discount_type;
-            // $product->discount_value = $request->discount_value;
+            $product->discount_type = $request->discount_type;
+            $product->discount_value = $request->discount_value;
 
             if ($request->hasFile("imagen")) {
                 // Obtener la imagen del request
@@ -94,14 +94,15 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $product = Product::find($id)->load('category');
+        $product = Product::find($id);
+        $productCategories = CategoryProduct::where('product_id', $id)->pluck('category_id')->toArray();;
         $categories = Category::all();
 
         if (is_null($product)) {
             return response()->json(['message' => 'Product not found'], 404);
         }
 
-        return view('admin.products.edit', compact('product', 'categories'));
+        return view('admin.products.edit', compact('product', 'categories', 'productCategories'));
     }
 
     public function update(Request $request, $id)
@@ -124,8 +125,8 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->price = $request->price;
             $product->stock = $request->stock;
-            // $product->discount_type = $request->discount_type;
-            // $product->discount_value = $request->discount_value;
+            $product->discount_type = $request->discount_type;
+            $product->discount_value = $request->discount_value;
             
             if ($request->hasFile("imagen")) {
                 // Obtener la imagen del request
@@ -161,9 +162,9 @@ class ProductController extends Controller
                 }
             }
 
-            return response()->json($product);
+            return response()->json(['message' => 'Product updated successfully'], 201);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e], 409);
+            return response()->json(['message' => $e], 500);
         }   
     }
 
