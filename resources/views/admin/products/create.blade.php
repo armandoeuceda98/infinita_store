@@ -168,7 +168,7 @@
                                     <li>
                                         <div class="checkbox-wrapper-27">
                                             <label class="checkbox">
-                                                <input type="checkbox" name="categories[]">
+                                                <input type="checkbox" name="categories[]" value="{{ $category->id }}">
                                                 <span class="checkbox__icon"></span>
                                                 {{ $category->name }}
                                             </label>
@@ -181,7 +181,7 @@
                         <div class="mt-6">
                         </div>
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload a Photo of the product</label>
-                        <input name="productfile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg 
+                        <input name="imagen" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg 
                         cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file_input_help" id="file_input" type="file" accept=".jpg, .jpeg, .png">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG or JPG (MAX. 800x400px).</p>
@@ -209,9 +209,11 @@
             $('#createProductForm').submit(function(e) {
                 e.preventDefault();
 
-                let form = $(this);
+                let form = $('#createProductForm');
                 var formData = new FormData(form[0]);
 
+                console.log(formData);
+                
                 Swal.fire({
                     title: "Loading...",
                     html: "Please, wait...",

@@ -8,6 +8,8 @@ class CategoryProduct extends Model
 {
     
     protected $fillable = ['category_id', 'product_id'];
+
+    public $timestamps = false;
     
     public function category()
     {

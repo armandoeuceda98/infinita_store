@@ -157,7 +157,7 @@
                     <form id="editProductForm" action="{{ route('products.update',  $product->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="text" placeholder="Product Name" name="name" class="input input-bordered w-full" value="{{ $product->name }}" />
-                        <textarea class="textarea textarea-bordered w-full my-5" name="description" placeholder="Product Description..." value="{{ $product->description }}"></textarea>
+                        <textarea class="textarea textarea-bordered w-full my-5" name="description" placeholder="Product Description...">{{ $product->description }}</textarea>
                         <input type="text" placeholder="Product Price" name="price" class="input input-bordered w-full" value="{{ $product->price }}" />
                         <input type="text" placeholder="Product Stock" name="stock" class="input input-bordered w-full mt-6" value="{{ $product->stock }}" />
 
@@ -183,7 +183,7 @@
                         <div class="mt-6">
                         </div>
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload a Photo of the product</label>
-                        <input name="productfile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg 
+                        <input name="imagen" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg 
                         cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             aria-describedby="file_input_help" id="file_input" type="file" accept=".jpg, .jpeg, .png">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">JPEG, PNG or JPG (MAX. 800x400px).</p>

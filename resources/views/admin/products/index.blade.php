@@ -47,7 +47,7 @@
                                 <tr>
                                     <th>Product Name</th>
                                     <th>Description</th>
-                                    <th>Price<th>
+                                    <th>Price</th>
                                     <th>Stock</th>
 
                                     <th style="text-align: end">Options</th>
@@ -58,7 +58,7 @@
                                     <tr>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->description }}</td>
-                                        <td>{{ $product->price }} </td>
+                                        <td>{{ $product->price }}</td>
                                         <td>{{ $product->stock }}</td>
 
                                         <td style="text-align: end">
@@ -68,11 +68,13 @@
                                                 </x-primary-button>
                                             </a>
                                             @if ($product->status == 'active')
-                                                <x-primary-button class="btn-change-status" data-id="{{ $product->id }}">
+                                                <x-primary-button class="btn-change-status"
+                                                    data-id="{{ $product->id }}">
                                                     {{ __('Deactivate') }}
                                                 </x-primary-button>
                                             @else
-                                                <x-secondary-button class="btn-change-status" data-id="{{ $product->id }}">
+                                                <x-secondary-button class="btn-change-status"
+                                                    data-id="{{ $product->id }}">
                                                     {{ __('Activate') }}
                                                 </x-secondary-button>
                                             @endif
@@ -92,7 +94,11 @@
             let table = new DataTable('#table', {
                 order: [
                     [1, 'asc']
-                ]
+                ],
+                columnDefs: [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }]
             });
 
             $('#table').on('click', '.btn-change-status', function() {
